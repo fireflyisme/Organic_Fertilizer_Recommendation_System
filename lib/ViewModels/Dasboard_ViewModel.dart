@@ -10,7 +10,7 @@ class DashboardViewModel extends ChangeNotifier {
   Future<void> fetchSensorData() async {
     isLoading = true;
     notifyListeners();
-    sensorData = await _service.fetchLatestData();
+    sensorData = await _service.fetchLatestData() as SensorData?;
     isLoading = false;
     notifyListeners();
   }
