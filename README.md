@@ -1,16 +1,40 @@
-# orgfer_recommendation_system
+# Organic Fertilizer Recommendation System (Mobile Application)
 
-A new Flutter project.
+== Component Tech ==
+* Mobile Application - Flutter
+* Machine Leaning Model - Jupyter Notebook Scikit-learn or pandas (trained), joblib (export)
+* Backend/Deployment - FastAPI on RPI or cloud
+* rpi_scripts - ESP32 and RPi4 sensor scripts
+* Organic-Fertilizer-Recommendation-System (Mobile Application)
 
-## Getting Started
+1️⃣ Launch Screen
+* Displays the app logo and name
+* 
+2️⃣ Sample Information
+* Sample identifier (Name,Surename)
+* Sampling Location
+* Sampling Date
 
-This project is a starting point for a Flutter application.
+3️⃣ Dashboard Screen
+* Displays real-time sensor data fetched from ThingSpeak Channels
+* 🌾 Crop Type (user-selected)
+* 💧 Soil Moisture
+* 🌡️ Soil pH
+* 🧪 Nitrogen (N) level
+* 🧪 Phosphorus (P) level
+* 🧪 Potassium (K) level
 
-A few resources to get you started if this is your first Flutter project:
+== Data Source ==
+* ESP32/Raspberry Pi 4 reads sensors and uploads data to ThingSpeak
+* Mobile app retrieves latest values using ThingSpeak REST API
+* Recommend Button
+* Notification (if there is more time)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+4️⃣ Recommendation Screen
+* Displays the best organic fertilizer recommendation.
+* Explanation of recommendation (e.g., “Based on current soil conditions, compost is ideal.”).
+* Uses trained ML model (Random Forest)
+* Option to save or export the recommendation
+* Option to refresh data
+* Back Button
+* Logout Button
