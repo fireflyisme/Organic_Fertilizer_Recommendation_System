@@ -1,25 +1,30 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:orgfer_recommendation_system/Models/Sensor_Data.dart' show SensorData;
+import 'package:orgfer_recommendation_system/Models/Sensor_Data.dart'; // Already contains SensorData model
 
 class ThingSpeakService {
-  final String channelId = 'YOUR_CHANNEL_ID';
-  final String apiKey = 'YOUR_READ_API_KEY';
+  final String url = 'https://api.thingspeak.com/channels/2993737/feeds.json?results=2';
 
-  Future<SensorData> fetchLatestData() async {
-    final url = 'https://api.thingspeak.com/channels/$channelId/feeds.json?api_key=$apiKey&results=1';
-    final response = await http.get(Uri.parse(url));
-    final data = json.decode(response.body);
+  Future<SensorData?> fetchLatestData() async {
+    try {
+      final response = await http.get(Uri.parse(url));
 
-    final feed = data['feeds'][0];
-    
-    return SensorData(
-      cropType: feed['field1'] ?? '',
-      soilMoisture: double.tryParse(feed['field2'] ?? '0') ?? 0,
-      soilPh: double.tryParse(feed['field3'] ?? '0') ?? 0,
-      nitrogen: double.tryParse(feed['field4'] ?? '0') ?? 0,
-      phosphorus: double.tryParse(feed['field5'] ?? '0') ?? 0,
-      potassium: double.tryParse(feed['field6'] ?? '0') ?? 0,
-    );
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+
+        if (data['feeds'] != null && data['feeds'].isNotEmpty) {
+          final feed = data['feeds'][0];
+          return SensorData.fromJson(feed); 
+        } else {
+          print("No data found in feeds.");
+        }
+      } else {
+        print("Failed to fetch data: ${response.statusCode}");
+      }
+    } catch (e) {
+      print("Exception occurred: $e");
+    }
+
+    return null;
   }
 }

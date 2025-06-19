@@ -4,7 +4,7 @@ import '../Models/Recommendation.dart' show Recommendation;
 class MLService {
   Recommendation getRecommendation(SensorData data) {
     // Mock logic; replace with real ML model or API call
-    if (data.soilPh < 6.5) {
+    if (data.soilMoisture < 6.5) { // change to pH after testing IOT
       return Recommendation(
         fertilizer: "Compost",
         explanation: "Based on current soil conditions, compost is ideal.",
@@ -12,7 +12,7 @@ class MLService {
     }
     return Recommendation(
       fertilizer: "Vermicompost",
-      explanation: "Soil pH is optimal. Vermicompost is recommended.",
+      explanation: "Soil moisture is optimal. Vermicompost is recommended.", // change to pH after testing IOT
     );
   }
 }

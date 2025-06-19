@@ -11,6 +11,7 @@ class RecommendationViewModel extends ChangeNotifier {
   Future<void> getRecommendation(SensorData data) async {
     isLoading = true;
     notifyListeners();
+    // ignore: await_only_futures
     recommendation = await _mlService.getRecommendation(data) as Recommendation?;
     isLoading = false;
     notifyListeners();

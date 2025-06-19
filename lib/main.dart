@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:orgfer_recommendation_system/Views/UI/HomeScreen.dart';
+import 'package:orgfer_recommendation_system/Views/UI/DashboardScreen.dart';
 import 'package:orgfer_recommendation_system/Views/UI/Launch_Screen.dart' show LaunchScreen;
 
 void main() {
@@ -21,7 +21,7 @@ class MainApp extends StatelessWidget {
       ),
       home: LaunchScreen(),
       routes: {
-        '/home': (context) => HomeScreen(),
+        '/home': (context) => DashboardScreen(),
       },
     );
   }
